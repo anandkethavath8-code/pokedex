@@ -62,19 +62,13 @@ export default function Details() {
 
   return (
     <div className="shadow-2xl bg-white/90 w-full max-w-[850px] h-auto min-h-[610px] mx-auto mt-10 rounded-4xl p-4">
-
-      {/* IMAGE + DETAILS */}
       <div className="flex flex-col md:flex-row gap-5">
-
-        {/* IMAGE */}
         <div className="w-full md:w-[400px] h-[300px] flex items-center justify-center">
           <img
             src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${String(data.id).padStart(3, '0')}.png`}
             className="h-[300px] w-[300px] object-contain"
           />
         </div>
-
-        {/* DETAILS */}
         <div className="font-[poppins] w-full md:w-[300px] h-[300px] p-3 flex flex-col gap-2">
 
           <h2 className="font-bold capitalize text-3xl">
@@ -83,8 +77,6 @@ export default function Details() {
               #{data.id}
             </span>
           </h2>
-
-          {/* TYPES */}
           <div className="flex flex-wrap gap-4">
             {data.types?.map((item, index) => (
               <p
@@ -130,8 +122,6 @@ export default function Details() {
 
         </div>
       </div>
-
-      {/* BASE STATS */}
       <div className="w-full max-w-[650px] mx-auto mt-5">
 
         <h2 className="font-bold text-xl mb-4">
