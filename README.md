@@ -5,7 +5,7 @@ The application uses the PokéAPI to fetch Pokémon data and allows users to sea
 
 ## 🚀 Live Demo
 
-[View Live Project](YOUR_RENDER_URL_HERE)
+[View Live Project](https://pokedex-cdmv.onrender.com)
 
 ## 📸 Features
 
