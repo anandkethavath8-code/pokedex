@@ -9,6 +9,7 @@ import Pokemon from './pages/pokemon';
 import Details from './pages/details';
 import Invalidpage from './pages/invalidpage';
 import { useEffect, useState } from 'react'
+import Evochain from "./pages/evochain";
 
 function App() {
   const [favourites, setFavourites] = useState(
@@ -27,6 +28,7 @@ function App() {
       <Route path="/pokemon" element={<Pokemon favourites={favourites} setFavourites={setFavourites}/>}/>
       <Route path='/details/:name' element={<Details/>} />
       <Route path='*' element={<Invalidpage/>} />
+      <Route path="/evolist/:name" element={<Evochain favourites={favourites} setFavourites={setFavourites}/>}/>
     </Routes>
     </BrowserRouter>
   )

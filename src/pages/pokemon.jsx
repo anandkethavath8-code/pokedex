@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Navbar from '../components/navbar'
 import Pokemoncards from '../components/pokemoncards'
 import { Search,Heart } from 'lucide-react';
-import { data, Link, useSearchParams } from 'react-router-dom'
+import {Link, useSearchParams } from 'react-router-dom'
 import Types from '../components/types';
 
 export default function Pokemon({favourites,setFavourites}) {
