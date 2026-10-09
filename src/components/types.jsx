@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import {ChevronDown} from "lucide-react"
 
-export default function Types({setPokemon}) {
-  const [custom,setCustom]=useState("")
+export default function Types({setPokemon,generation,setGeneration}) {
+  
   const getpokemon=(type)=>{
            if (!type) {
             fetch("https://pokeapi.co/api/v2/pokemon?limit=20")
@@ -13,9 +13,16 @@ export default function Types({setPokemon}) {
            }
 
           fetch(`https://pokeapi.co/api/v2/type/${type}`)
-          .then(response=>response.json())
+          .then(response=>{
+            if(!response.ok){
+              throw new Error("type not found")
+            }
+            return response.json()})
           .then(data=>{
             setPokemon(data.pokemon.map(item => item.pokemon.name))
+          })
+          .catch(()=>{
+            alert("Pokemon Type Not Found")
           })
       }
 
@@ -56,9 +63,6 @@ export default function Types({setPokemon}) {
       >ROCK</button>
       <input
           placeholder="Type"
-          onChange={(e) => {
-            setCustom(e.target.value)
-        }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               getpokemon(e.target.value)
@@ -66,6 +70,27 @@ export default function Types({setPokemon}) {
         }}
     className="w-32 h-12 px-5 rounded-full bg-white border border-gray-300 outline-none shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200"
   />
+  <div className='relative w-32'>
+  <select value={generation} name='Generation'
+  onChange={(e)=>{
+    setGeneration(e.target.value)
+  }}
+  className="w-32 h-12 px-3 appearance-none rounded-full bg-white border border-gray-300 outline-none shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200">
+    <option value="" disabled>Genration</option>
+    <option value="1">Generation I — Kanto</option>
+    <option value="2">Generation II — Johto</option>
+    <option value="3">Generation III — Hoenn</option>
+    <option value="4">Generation IV — Sinnoh</option>
+    <option value="5">Generation V — Unova</option>
+    <option value="6">Generation VI — Kalos</option>
+    <option value="7">Generation VII — Alola</option>
+    <option value="8">Generation VIII — Galar</option>
+    <option value="9">Generation IX — Paldea</option>
+  </select>
+  {!generation &&
+  <ChevronDown strokeWidth={1} className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+  }
+  </div>
 </div>
   )
 }

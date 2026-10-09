@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 export default function Pokemoncards({pokemon}) {
     const [data, setData] = useState(null)
+    const [error, setError] = useState(false)
 
     const typeColors = {
             normal: "bg-gray-400",
@@ -23,26 +24,39 @@ export default function Pokemoncards({pokemon}) {
             steel: "bg-slate-500",
             fairy: "bg-pink-300"
         }
-    useEffect(() => {
-        if(!pokemon) return
-        console.log(pokemon)
-        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-            .then(response => response.json())
-            .then(data => {
-                setData(data)
-            })
-    }, [pokemon])
-    if (!data) {
-      return <h1>Loading...</h1>
-    }
+        useEffect(() => {
+    if (!pokemon) return;
+
+    setData(null);
+    setError(false);
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase().trim()}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Pokemon not found");
+            }
+            return response.json();
+        })
+        .then(data => {
+            setData(data);
+        })
+        .catch(error => {
+            console.log("Pokemon:", pokemon, error.message);
+            setError(true);
+        });
+}, [pokemon]);
+
+   if (error) return <h1>Pokémon not found</h1>;
+   if (!data) return <h1>Loading...</h1>;
+
     return (
     <div>
       <div >
         <img
-        src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${String(data.id).padStart(3, '0')}.png`}
+          src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${String(data.id).padStart(3, '0')}.png`}
           alt={data.name}
-          className='object-contain w-full h-35'
-        />
+        className="object-contain w-full h-35"
+      />
       </div>
       <p>#{data.id}</p>
       <h2 className='font-bold capitalize'>{data.name}</h2>

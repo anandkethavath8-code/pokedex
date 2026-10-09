@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import Voice from '../components/voice'
 
 export default function Details() {
   const { name } = useParams()
@@ -72,10 +73,12 @@ export default function Details() {
           <img
             src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${String(data.id).padStart(3, '0')}.png`}
             className="h-[300px] w-[300px] object-contain"
+            alt={data.name}
           />
         </div>
         <div className="font-[poppins] w-full md:w-[300px] min-h-[300px] p-3 flex flex-col gap-2">
-          <h2 className="font-bold capitalize text-3xl flex items-center gap-2">
+          <h2 className="font-bold capitalize text-3xl flex flex-wrap items-center gap-2">
+            <Voice name={data.name} />
             {data.name}
             <span className="ml-3 text-gray-500 text-xl font-normal">
               #{data.id}
