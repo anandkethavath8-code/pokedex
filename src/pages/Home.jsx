@@ -1,19 +1,25 @@
-import { useState } from 'react'
 import Navbar from '../components/navbar';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+import homeBg from '../../assets/pokedex_home_background_1536x551.png'
+
 export default function Home() {
     const [search,setSearch]=useState("")
     const navigate =useNavigate()
+
     const handleSearch = () => {
         if (search.trim() === "") return
         navigate(`/pokemon?search=${search.toLowerCase().trim()}`)
     }
+
   return (
     <div
       className="min-h-screen bg-cover bg-center"
       style={{
-        backgroundImage:
-          "url('https://i.pinimg.com/736x/4e/5b/2b/4e5b2becd9a6176dd6406ea7320bcfd4.jpg')"
+        backgroundImage: `url(${homeBg})`,
+        backgroundSize: '100% 100%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       <div className="min-h-screen bg-black/30">

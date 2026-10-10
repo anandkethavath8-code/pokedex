@@ -10,6 +10,7 @@ import Details from './pages/details';
 import Invalidpage from './pages/invalidpage';
 import { useEffect, useState } from 'react'
 import Evochain from "./pages/evochain";
+import Pokemonfight from "./pages/pokemonfight";
 
 function App() {
   const [favourites, setFavourites] = useState(
@@ -29,6 +30,7 @@ function App() {
       <Route path='/details/:name' element={<Details/>} />
       <Route path='*' element={<Invalidpage/>} />
       <Route path="/evolist/:name" element={<Evochain favourites={favourites} setFavourites={setFavourites}/>}/>
+      <Route path="/pokemonfight" element={<Pokemonfight/>} />
     </Routes>
     </BrowserRouter>
   )

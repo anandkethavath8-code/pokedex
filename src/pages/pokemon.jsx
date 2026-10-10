@@ -4,6 +4,7 @@ import Pokemoncards from '../components/pokemoncards'
 import { Search,Heart } from 'lucide-react';
 import {Link, useSearchParams } from 'react-router-dom'
 import Types from '../components/types';
+import DailyPokemonPopup from '../components/DailyPokemonPopup';
 
 export default function Pokemon({favourites,setFavourites}) {
     const [search, setSearch] = useState("")
@@ -11,6 +12,7 @@ export default function Pokemon({favourites,setFavourites}) {
     const [generation,setGeneration]=useState("")
     const [suggestions, setSuggestions] = useState([])
     const [showSuggestions, setShowSuggestions] = useState(true)
+    const [showDailyPopup, setShowDailyPopup] = useState(false)
 
     const [searched]=useSearchParams()
     const urlsearch =searched.get("search")
@@ -73,6 +75,18 @@ export default function Pokemon({favourites,setFavourites}) {
                 setFavourites([...favourites,name])
             }
         }
+        useEffect(() => {
+            if (!sessionStorage.getItem('dailyPopupShown')) {
+            setShowDailyPopup(true)
+            sessionStorage.setItem('dailyPopupShown', 'true')
+        }}, [])
+        useEffect(() => {
+            const openPopup = () => setShowDailyPopup(true)
+            window.addEventListener('openDailyPokemon', openPopup)
+            return () => {
+            window.removeEventListener('openDailyPokemon', openPopup)
+           }
+        }, [])
 
   return (
     <div >
@@ -118,6 +132,14 @@ export default function Pokemon({favourites,setFavourites}) {
             )}
             </div>
             <button onClick={handler} className='ml-0 md:ml-10 w-30 h-13 rounded-full shadow-md bg-white/90'>Search</button>
+            <div className='px-2'>
+            <button
+              onClick={() => window.dispatchEvent(new Event('openDailyPokemon'))}
+              className='ml-0 md:ml-10 w-30 h-13 rounded-full whitespace-nowrap  shadow-md bg-white/90'
+            >
+              PokéSurprise
+            </button>
+            </div>
           </div>
         </div>
         <Types setPokemon={setPokemon} generation={generation} setGeneration={setGeneration}/>
@@ -136,6 +158,9 @@ export default function Pokemon({favourites,setFavourites}) {
                 </div>
                 ))}
         </div>
+        {showDailyPopup && (
+        <DailyPokemonPopup onClose={() => setShowDailyPopup(false)} />
+    )}
     </div>
   )
 }
