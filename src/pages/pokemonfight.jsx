@@ -110,7 +110,7 @@ const getwinner = async () => {
   }, []);
 
   return (
-    <div className="w-full h-200 relative flex flex-col">
+    <div className="w-full min-h-screen relative flex flex-col overflow-x-hidden">
       <Navbar />
       <div className="px-2 py-3 mt-5 flex flex-col items-center text-center">
       <div className="flex items-center gap-3 justify-center">
@@ -129,10 +129,12 @@ const getwinner = async () => {
         Choose two Pokémon and see who wins!
       </p>
     </div>
-      <div className={`h-150 ml-25 mt-30 absolute flex ${
-  pokemon1.length > 0 && pokemon2.length > 0 ? "gap-0" : "gap-50"
+      <div className={`w-full mt-6 px-2 flex flex-col md:flex-row items-center justify-center ${
+  pokemon1.length > 0 && pokemon2.length > 0
+    ? "gap-2 md:gap-0"
+    : "gap-10 md:gap-50"
 }`}>
-        <div className=" w-130 h-fit mt-10 ml-10 p-3">
+        <div className="w-full max-w-[520px] min-w-0 p-3">
           <div className="relative w-full">
             <Search
               strokeWidth={1}
@@ -183,7 +185,7 @@ const getwinner = async () => {
             {pokemon1.map((item) => (
               <div
                 key={item}
-                className="w-45 md:w-50 h-66 p-3 shadow-2xl rounded-xl bg-white/90"
+                className="w-full max-w-[200px] min-h-66 p-3 shadow-2xl rounded-xl bg-white/90"
               >
                 <Pokemoncards pokemon={item} />
               </div>
@@ -192,18 +194,16 @@ const getwinner = async () => {
         </div>
         {
           pokemon1.length>0 && pokemon2.length>0 &&(
-            <div className=" w-50 h-91 mt-10 p-3 mx-auto">
-  <div className="flex justify-center">
-    <img
-      src={vsimage}
-      alt="VS"
-      className="w-full h-100 h-16 object-contain"
-    />
-  </div>
-        </div>
+            <div className="w-20 h-20 md:w-32 md:h-32 shrink-0 flex items-center justify-center">
+  <img
+    src={vsimage}
+    alt="VS"
+    className="w-full h-full object-contain"
+  />
+</div>
           )
         }
-        <div className=" w-130 h-fit mt-10 p-3">
+        <div className="w-full max-w-[520px] min-w-0 p-3">
           <div className="relative w-full">
             <Search
               strokeWidth={1}
@@ -254,7 +254,7 @@ const getwinner = async () => {
             {pokemon2.map((item) => (
               <div
                 key={item}
-                className="w-45 md:w-50 h-66 p-3 shadow-2xl rounded-xl bg-white/90"
+                className="w-full max-w-[200px] min-h-66 p-3 shadow-2xl rounded-xl bg-white/90"
               >
                 <Pokemoncards pokemon={item} />
               </div>
@@ -266,7 +266,7 @@ const getwinner = async () => {
 {
   pokemon1.length > 0 && pokemon2.length > 0 && (
     <>
-      <div className=" h-15 w-full mt-88 relative z-10 flex items-center justify-center">
+      <div className="w-full py-6 flex items-center justify-center">
         <button
           className="bg-white text-black p-3 w-30 rounded"
           onClick={getwinner}
@@ -276,7 +276,7 @@ const getwinner = async () => {
       </div>
 
       {winner && (
-        <div className="mt-5 mx-auto w-fit rounded-xl bg-white p-6 text-center shadow-xl">
+        <div className="mt-4 mx-4 mb-6 w-auto max-w-md self-center rounded-xl bg-white p-4 sm:p-6 text-center shadow-xl">
           {winner.name ? (
             <>
               <h2 className="text-2xl font-bold text-green-600">
