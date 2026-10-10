@@ -190,17 +190,17 @@ const getwinner = async () => {
             ))}
           </div>
         </div>
-        {
-          pokemon1.length>0 && pokemon2.length>0 &&(
-            <div className="w-20 h-20 md:w-32 md:h-32 shrink-0 flex items-center justify-center">
-  <img
-    src={vsimage}
-    alt="VS"
-    className="w-full h-full object-contain"
-  />
-</div>
-          )
-        }
+        
+{pokemon1.length > 0 && pokemon2.length > 0 && (
+  <div className="w-20 h-20 md:w-32 md:h-32 shrink-0 self-center flex items-center justify-center">
+    <img
+      src={vsimage}
+      alt="VS"
+      className="w-full h-full object-contain"
+    />
+  </div>
+)}
+
         <div className="w-full max-w-[520px] min-w-0 p-3">
           <div className="relative w-full">
             <Search
