@@ -129,11 +129,9 @@ const getwinner = async () => {
         Choose two Pokémon and see who wins!
       </p>
     </div>
-      <div className={`w-full mt-6 px-2 flex flex-col md:flex-row items-center justify-center ${
-  pokemon1.length > 0 && pokemon2.length > 0
-    ? "gap-2 md:gap-0"
-    : "gap-10 md:gap-50"
-}`}>
+      
+<div className="w-full mt-6 px-2 flex flex-col md:flex-row items-start justify-center gap-6 md:gap-8">
+
         <div className="w-full max-w-[520px] min-w-0 p-3">
           <div className="relative w-full">
             <Search
