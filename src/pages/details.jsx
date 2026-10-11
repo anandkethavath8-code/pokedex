@@ -39,6 +39,15 @@ export default function Details() {
   }
 
   useEffect(() => {
+    document.title = `${(name || "Pokémon").charAt(0).toUpperCase() + (name || "Pokémon").slice(1)} – Pokémon Details | Pokémon Explorer`;
+    let meta = document.querySelector('meta[name="description"]');
+
+if (meta) {
+  meta.setAttribute(
+    "content",
+    `Explore ${name}, including its Pokémon type, abilities, height, weight, base stats and evolution information in Pokémon Explorer.`
+  );
+}
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .then(response => response.json())
       .then(data => {

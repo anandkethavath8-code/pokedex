@@ -6,6 +6,7 @@ export default function Navbar() {
     <div className='w-full min-h-17 shadow-2xl flex flex-col sm:flex-row sm:justify-between sm:items-center'>
         <div className='flex items-center justify-center sm:justify-start'>
             <img src='https://w7.pngwing.com/pngs/21/423/png-transparent-pokemon-go-pokeball-pokemon-circle-red-thumbnail.png'
+            alt="Poké Ball - Pokémon Explorer logo"
             className='h-12 w-12 md:h-15 md:w-15 p-1 mt-1 rounded-full'></img>
             <p className='p-3 md:p-5 font-bold text-red-600 text-base md:text-xl'>Pokémon Explorer</p>
         </div>
